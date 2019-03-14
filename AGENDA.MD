@@ -56,7 +56,7 @@ Alle Fachlichen Themen sind hier detailliert aufgelistet: https://angular.schule
 * 9:00 Uhr - Beginn der Schulung  
 * 10:30 Uhr - Vormittagspause (mit Snacks)  
 * 12:30 Uhr - Mittagspause (Lunch)  
-* __15:00 Uhr__ - Nachmittagspause (mit Gebäck und Kuchen)  
+* 16:00 Uhr - Nachmittagspause (mit Gebäck und Kuchen)  
 * 17:30 Uhr - Abschluss mit Übergabe der Zertifikate, Gruppenfoto
 * ca. 18:00 Uhr - Ende der Schulung  
 
