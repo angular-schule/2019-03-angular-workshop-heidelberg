@@ -80,6 +80,23 @@ Wenn bei allen Teilnehmern das Grundgerüst steht, können wir ohne Zeitverlust 
 ![Screenshot CLI](http://assets.angular.schule/chrome_cli_welcome.png)
 
 
+
+
+## Test-Umgebung prüfen
+
+Beende den laufenden Webserver mit der Tastenkombination `Strg + C`.  
+Prüfe bitte zum Abschluss, ob folgende Befehle ohne Fehlermeldungen ausführen:
+
+```
+ng test
+ng e2e
+```
+
+Das war's auch schon!
+
+
+## Probleme?
+
 Sollte es zu einer Fehlermeldung kommen, dann sende uns den Fehlertext und einen Screenshot einfach per Mail an [team@angular.schule](mailto:team@angular.schule).  
 Wir werden schnell eine Lösung finden.
 
