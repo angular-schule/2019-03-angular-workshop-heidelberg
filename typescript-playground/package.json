@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run compile && npm run serve",
+
+    "compile": "webpack",
+    "serve": "node dist/bundle.js"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "typescript": "^3.3.4000"
+  "dependencies": {},
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.4000",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
