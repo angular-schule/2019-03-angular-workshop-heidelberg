@@ -2,8 +2,13 @@
 
 <!-- <br-book *ngFor="let b of books" [book]="b"></br-book> -->
 
-<div *ngFor="let b of books; index as i">
 
-  {{i + 1}}. <br-book [book]="b"></br-book>
+<div
+  *ngFor="let b of books; index as i; odd as o"
+  [ngClass]="{ grayBackground: o }">
+
+  {{i + 1}}.
+  <br-book [book]="b"></br-book>
 
 </div>
+
