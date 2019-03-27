@@ -36,4 +36,20 @@ export class DashboardComponent implements OnInit {
       rating: 1
     }];
   }
+
+  doRateDown(book: Book) {
+    const ratedBook = this.service.rateDown(book);
+    this.updateAndSortList(ratedBook);
+  }
+
+  doRateUp(book: Book) {
+    const ratedBook = this.service.rateUp(book);
+    this.updateAndSortList(ratedBook);
+  }
+
+  updateAndSortList(ratedBook: Book) {
+    this.books = this.books
+      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating);
+  }
 }
