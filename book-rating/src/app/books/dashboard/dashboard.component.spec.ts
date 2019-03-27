@@ -3,23 +3,32 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { BookComponent } from '../book/book.component';
 import { BookRatingService } from '../shared/book-rating.service';
+import { Book } from '../shared/book';
+import { Input, Component } from '@angular/core';
+
+@Component({
+  selector: 'br-book',
+  template: ':-)'
+})
+export class TestBookComponent {
+  @Input() book: Book;
+}
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
-  let rateUpWasCalled = false;
   beforeEach(async(() => {
 
     const bookRatingMock = {
-      rateUp: (book) => { rateUpWasCalled = true; return book; },
-      rateDown: () => { }
+      rateUp: book => book,
+      rateDown: book => book
     };
 
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
-        BookComponent // Integration Test
+        TestBookComponent
       ],
       providers: [
         {
@@ -39,15 +48,18 @@ describe('DashboardComponent', () => {
 
   it('doRateUp() should forward the execution to BookRatingService', () => {
 
-    const newBook = {
-      isbn: '000',
-      title: '',
-      description: '',
-      rating: 1
-    };
+    const rs = TestBed.get(BookRatingService);
+    spyOn(rs, 'rateUp').and.callThrough();
+    const newBook = { isbn: '000' } as Book;
 
     component.doRateUp(newBook);
-    expect(rateUpWasCalled).toBe(true);
+    expect(rs.rateUp).toHaveBeenCalled();
+  });
 
+  it('doRateUp should call updateList', () => {
+    spyOn(component, 'updateAndSortList');
+    component.doRateUp({ isbn: '000' } as Book);
+
+    expect(component.updateAndSortList).toHaveBeenCalled();
   });
 });
