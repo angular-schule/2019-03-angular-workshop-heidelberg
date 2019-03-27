@@ -11,11 +11,18 @@ describe('BookComponent', () => {
       declarations: [ BookComponent ]
     })
     .compileComponents();
+    //window.setTimeout(() => {}, 3000)
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
+    component.book = {
+      isbn: '000',
+      title: 'Hallo Test',
+      description: ':-)',
+      rating: 1
+    }
     fixture.detectChanges();
   });
 
