@@ -1,0 +1,6 @@
+.form-control.ng-dirty {
+  &.ng-valid::before {
+     content: '😀';
+     display: inline-block;
+  }
+}
