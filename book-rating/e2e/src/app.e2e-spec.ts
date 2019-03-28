@@ -10,7 +10,10 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to book-rating!');
+    browser.sleep(10000);
+    // browser.pause();
+    expect(page.getTitleText()).toEqual('Book Rating');
+
   });
 
   afterEach(async () => {
