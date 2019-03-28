@@ -9,8 +9,7 @@ import { Book } from '../shared/book';
 })
 export class CreateBookComponent {
 
-  @Output()
-  created = new EventEmitter<Book>();
+  @Output() created = new EventEmitter<Book>();
 
   bookForm = new FormGroup({
     isbn: new FormControl('', [
@@ -38,12 +37,10 @@ export class CreateBookComponent {
     3. füge das Buch dem Array hinzu
 
     Tipp:
-
     Zu einem Array hinzufügen:
 
     this.books = [...this.books, newBook];
     */
-
     this.bookForm.reset();
   }
 }
