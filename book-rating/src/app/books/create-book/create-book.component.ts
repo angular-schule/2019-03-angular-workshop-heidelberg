@@ -31,16 +31,7 @@ export class CreateBookComponent {
       rating: 1
     };
 
-    /*
-    1. sende das Buch per Event (created)
-    2. empfange das Buch im Dashboard
-    3. füge das Buch dem Array hinzu
-
-    Tipp:
-    Zu einem Array hinzufügen:
-
-    this.books = [...this.books, newBook];
-    */
+    this.created.emit(newBook);
     this.bookForm.reset();
   }
 }

@@ -2,7 +2,9 @@
 
 <!-- <br-book *ngFor="let b of books" [book]="b"></br-book> -->
 
-<br-create-book></br-create-book>
+<br-create-book
+  (created)="addBook($event)"
+></br-create-book>
 
 <h5>Anzahl der Bücher: {{ books.length }}</h5>
 
