@@ -1,10 +1,10 @@
-import { $, browser } from 'protractor';
+import { $, $$, browser } from 'protractor';
 
 describe('Angular Buch', () => {
 
   beforeAll(() => browser.waitForAngularEnabled(false));
 
-  it('should have a ranking smaller than 20', () => {
+  it('should have a ranking smaller than 20', async () => {
 
     browser.get('https://www.amazon.de/Angular-Grundlagen-fortgeschrittene-Practices-NativeScript/dp/3864906466/');
     const ranking = $('.zg_hrsr_rank');
@@ -13,15 +13,14 @@ describe('Angular Buch', () => {
     // const longText = ranking.getText();
     // expect(longText).toContain('Nr. 17');
 
-    // Nr. 17
-    ranking.getText().then(text => {
-      const numberAsString = text.replace('Nr. ', '');
-      const nr = parseInt(numberAsString, 10);
-      console.log('Ranking: ', nr);
-      expect(nr).toBeLessThanOrEqual(20);
-    });
+    // TEST!
+    const text = await ranking.getText();
+    const numberAsString = text.replace('Nr. ', '');
+    const nr = parseInt(numberAsString, 10);
+    console.log('Ranking: ', nr);
+    expect(nr).toBeLessThanOrEqual(20);
 
-
+    // $$('#add-to-cart-button')[1].click();
   });
 
 
