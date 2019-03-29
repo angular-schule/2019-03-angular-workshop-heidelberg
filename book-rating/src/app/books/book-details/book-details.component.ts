@@ -35,10 +35,15 @@ export class BookDetailsComponent implements OnInit {
       complete: () => console.log('Complete! 😀')
     };
 
-    const observable = of(1, 2, 3);
+    const observable$ = new Observable(subscriber => {
+      subscriber.next(2);
+      subscriber.next(4);
+      subscriber.next(6);
+      window.setTimeout(() => subscriber.next(99), 2000);
+    });
 
-    const subscription = observable.subscribe(observer);
-    subscription.unsubscribe();
+    const subscription = observable$.subscribe(observer);
+    window.setTimeout(() => subscription.unsubscribe(), 2000);
   }
 
 }
