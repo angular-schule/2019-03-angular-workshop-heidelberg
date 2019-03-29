@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookStoreService } from '../shared/book-store.service';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { Observable, of, from } from 'rxjs';
 import { Book } from '../shared/book';
 
@@ -35,14 +35,21 @@ export class BookDetailsComponent implements OnInit {
       complete: () => console.log('Complete! 😀')
     };
 
-    const observable$ = new Observable(subscriber => {
+    const observable$ = new Observable<number>(subscriber => {
       subscriber.next(2);
       subscriber.next(4);
       subscriber.next(6);
+      subscriber.complete();
       window.setTimeout(() => subscriber.next(99), 2000);
     });
 
-    const subscription = observable$.subscribe(observer);
+    // import { map } from 'rxjs/operators';
+    const subscription = observable$
+      .pipe(
+        map(x => x * 10),
+        filter(x => x > 20)
+      )
+      .subscribe(observer);
     window.setTimeout(() => subscription.unsubscribe(), 2000);
   }
 
