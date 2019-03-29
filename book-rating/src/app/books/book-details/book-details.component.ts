@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookStoreService } from '../shared/book-store.service';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, share } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Book } from '../shared/book';
 
