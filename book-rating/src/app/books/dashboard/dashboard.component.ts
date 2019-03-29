@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
-import { BookRatingService } from '../shared/book-rating.service';
-import { BookStoreService } from '../shared/book-store.service';
 import { State } from 'src/app/reducers';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { LoadBooks } from '../actions/book.actions';
+import { getBooksLoading, getAllBooks } from '../selectors/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -15,37 +14,33 @@ import { LoadBooks } from '../actions/book.actions';
 })
 export class DashboardComponent implements OnInit {
 
-  books: Book[] = [];
+  loading$ = this.ngrxStore.pipe(select(getBooksLoading));
+  books$ = this.ngrxStore.pipe(select(getAllBooks));
 
-  constructor(private service: BookRatingService, private store: BookStoreService,
-              private ngrxStore: Store<State>) {
-
-      this.ngrxStore.dispatch(new LoadBooks());
+  constructor(private ngrxStore: Store<State>) {
   }
 
   ngOnInit() {
-    this.store.getAll().subscribe((books) => {
-      this.books = books;
-    });
+    this.ngrxStore.dispatch(new LoadBooks());
   }
 
   doRateDown(book: Book) {
-    const ratedBook = this.service.rateDown(book);
-    this.updateAndSortList(ratedBook);
+    // const ratedBook = this.service.rateDown(book);
+    // this.updateAndSortList(ratedBook);
   }
 
   doRateUp(book: Book) {
-    const ratedBook = this.service.rateUp(book);
-    this.updateAndSortList(ratedBook);
+    // const ratedBook = this.service.rateUp(book);
+    // this.updateAndSortList(ratedBook);
   }
 
   updateAndSortList(ratedBook: Book) {
-    this.books = this.books
-      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating);
+    // this.books = this.books
+    //   .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+    //   .sort((a, b) => b.rating - a.rating);
   }
 
   addBook(newBook: Book) {
-    this.books = [...this.books, newBook];
+    // this.books = [...this.books, newBook];
   }
 }

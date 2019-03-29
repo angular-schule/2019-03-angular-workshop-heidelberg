@@ -1,25 +1,28 @@
-<!-- {{ books | json }} -->
-
-<!-- <br-book *ngFor="let b of books" [book]="b"></br-book> -->
-
 <br-create-book
   (created)="addBook($event)"
 ></br-create-book>
 
+<ng-container *ngIf="loading$ | async">
+  Lade Bücher, bitte warten!
+</ng-container>
+
+<ng-container *ngIf="books$ | async as books">
+
 <h5>Anzahl der Bücher: {{ books.length }}</h5>
 
-<div
-  *ngFor="let b of books; index as i; odd as o"
-  [ngClass]="{ grayBackground: o }">
+  <div
+    *ngFor="let b of books; index as i; odd as o"
+    [ngClass]="{ grayBackground: o }">
 
-  {{i + 1}}.
-  <br-book
-    [book]="b"
-    (rateDown)="doRateDown($event)"
-    (rateUp)="doRateUp($event)"
-  ></br-book>
+    {{i + 1}}.
+    <br-book
+      [book]="b"
+      (rateDown)="doRateDown($event)"
+      (rateUp)="doRateUp($event)"
+    ></br-book>
 
-</div>
+  </div>
 
+</ng-container>
 
 
