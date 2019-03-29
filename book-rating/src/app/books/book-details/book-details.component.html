@@ -1,7 +1,15 @@
-<h1>#{{ (book$ | async)?.title }}</h1>
+<ng-container *ngIf="book$ | async as book; else showLoading">
 
-<p>
-  {{ (book$ | async)?.description }}
-</p>
+  <h1>#{{ book.title }}</h1>
+
+  <p>
+    {{ book.description }}
+  </p>
+
+</ng-container>
+
+<ng-template #showLoading>
+  <strong>Buch wird geladen...</strong>
+</ng-template>
 
 <a routerLink="/book/222">Get Book 222</a>
