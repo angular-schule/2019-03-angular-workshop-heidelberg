@@ -20,37 +20,15 @@ export class BookDetailsComponent implements OnInit {
               private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.isbn$ = this.route.paramMap
+    this.route.paramMap
       .pipe(
-        map(params => params.get('isbn'))
-      );
+        map(params => params.get('isbn')),
+        map(isbn => this.store.getSingle(isbn))
+      ).subscribe(books$ => {
 
-    // --------
-    // import { map } from 'rxjs/operators';
-    // import { Observable, of, from } from 'rxjs';
-
-    const observer = {
-      next: zahl => console.log(zahl),
-      error: e => console.log('ERROR', e),
-      complete: () => console.log('Complete! 😀')
-    };
-
-    const observable$ = new Observable<number>(subscriber => {
-      subscriber.next(2);
-      subscriber.next(4);
-      subscriber.next(6);
-      subscriber.complete();
-      window.setTimeout(() => subscriber.next(99), 2000);
-    });
-
-    // import { map } from 'rxjs/operators';
-    const subscription = observable$
-      .pipe(
-        map(x => x * 10),
-        filter(x => x > 20)
-      )
-      .subscribe(observer);
-    window.setTimeout(() => subscription.unsubscribe(), 2000);
+        books$.subscribe((book) => {
+          console.log(book);
+        });
+      });
   }
-
 }
