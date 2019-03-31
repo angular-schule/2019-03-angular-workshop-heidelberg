@@ -23,10 +23,11 @@ export function reducer(state = initialState, action: BookActions): State {
     }
 
     case BookActionTypes.LoadBooksSuccess: {
+      const books = action.payload.books;
       return {
         ...state,
         loading: false,
-        books: action.payload.books
+        books
       };
     }
 
